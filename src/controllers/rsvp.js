@@ -1,8 +1,6 @@
 import RSVP from "../models/rsvp.js";
 
-// @desc    Get all RSVPs
-// @route   GET /api/rsvps
-// @access  Private
+
 const getRSVPs = async (req, res) => {
     try {
         const rsvps = await RSVP.find({}).sort({ createdAt: -1 });
@@ -13,13 +11,10 @@ const getRSVPs = async (req, res) => {
     }
 };
 
-// @desc    Create a new RSVP
-// @route   POST /api/rsvps
-// @access  Public
+
 const createRSVP = async (req, res) => {
     try {
         const { name, email, phone, event, numberOfGuests, message } = req.body;
-
         const rsvp = await RSVP.create({
             name,
             email,
@@ -36,9 +31,7 @@ const createRSVP = async (req, res) => {
     }
 };
 
-// @desc    Delete an RSVP
-// @route   DELETE /api/rsvps/:id
-// @access  Private
+
 const deleteRSVP = async (req, res) => {
     try {
         const rsvp = await RSVP.findById(req.params.id);

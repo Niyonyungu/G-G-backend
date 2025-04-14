@@ -1,7 +1,6 @@
 import Memory from "../models/memories.js";
 import { cloudinary } from "../config/cloudinaryConfig.js";
 
-
 const getMemories = async (req, res) => {
     try {
         const memories = await Memory.find({}).sort({ createdAt: -1 });
@@ -147,12 +146,11 @@ const deleteMemory = async (req, res) => {
             return res.status(404).json({ message: 'Memory not found' });
         }
 
-        // Extract public_id from Cloudinary URL
+
         const urlParts = memory.mediaUrl.split('/');
         const publicIdWithExtension = urlParts[urlParts.length - 1];
         const publicId = `Gad-Gomez/${publicIdWithExtension.split('.')[0]}`;
 
-        // Delete file from Cloudinary
         await cloudinary.uploader.destroy(publicId, { resource_type: memory.mediaType });
 
         // Delete memory from database
@@ -173,4 +171,4 @@ const deleteMemory = async (req, res) => {
     }
 };
 
-export { getMemories, getMemory, createMemory, updateMemory , deleteMemory };
+export { getMemories, getMemory, createMemory, updateMemory, deleteMemory };

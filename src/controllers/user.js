@@ -37,7 +37,7 @@ const registerUser = async (req, res) => {
         }
         return res.status(201).json({
             status: 201,
-            message: "User created successfully",
+            message: "User Registered successfully",
             data: user
         });
 
@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
             });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: "30d" });
         return res.status(200).json({
             status: 200,
             message: "Logged in successfully",
