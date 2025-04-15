@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import rsvpRoutes from './routes/rsvpRoutes.js';
 import memoryRoutes from './routes/memory.js';
+import announcementRoutes from './routes/anouncement.js';
 
 // Load environment variables
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(express.json()); // For parsing JSON request bodies
 app.use('/api/auth', authRoutes);
 app.use('/api/rsvps', rsvpRoutes);
 app.use('/api/memories', memoryRoutes);
+app.use('/api/announcement', announcementRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
